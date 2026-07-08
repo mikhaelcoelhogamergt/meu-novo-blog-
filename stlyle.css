@@ -1,0 +1,230 @@
+/* ==========================================================================
+   IDENTIDADE VISUAL: GARAGEM & PERFORMANCE (ESTILO AUTOMOTIVO / DODGE CHARGER)
+   ========================================================================== */
+
+:root {
+    --bg-color: #0b0c10;          /* Preto profundo chassi */
+    --card-bg: #1f2128;           /* Cinza asfalto escuro */
+    --text-color: #f1f1f1;        /* Branco fosco */
+    --text-light: #a6a6a6;        /* Cinza metalizado */
+    --primary-color: #ff5e00;     /* Laranja HEMI Clássico */
+    --border-color: #2f3441;      /* Linhas de painel mecânico */
+    --header-bg: #000000;         /* Preto absoluto */
+    --header-text: #ffffff;
+}
+
+/* Sistema de cores ao ativar a classe dark pelo JavaScript (Tema SRT Hellcat) */
+[data-theme="dark"] {
+    --bg-color: #121214;
+    --card-bg: #0a0a0c;
+    --primary-color: #e60000;     /* Vermelho de Alta Performance */
+    --border-color: #22252d;
+}
+
+/* Reset Geral e Tipografia Bruta */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Impact', 'Arial Black', sans-serif; /* Títulos pesados estilo emblema */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 1.6;
+}
+
+/* Cabeçalho - Inspirado na Grade Dianteira de um Muscle Car */
+header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+    border-bottom: 6px solid var(--primary-color);
+    box-shadow: 0 5px 25px rgba(255, 94, 0, 0.25);
+}
+
+header h1 {
+    font-size: 3.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-style: italic;
+    color: #ffffff;
+    text-shadow: 3px 3px 0px var(--primary-color);
+}
+
+header p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Texto mais limpo */
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-light);
+    margin-top: 12px;
+}
+
+/* Área Central do Conteúdo */
+main {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 0 20px 60px 20px;
+}
+
+/* Cards dos Artigos (Estilo Bloco de Motor / Fibra de Carbono) */
+article {
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 4px; /* Cantos retos e agressivos como a carroceria antiga */
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+}
+
+/* Efeito de aceleração ao passar o mouse */
+article:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: var(--primary-color);
+}
+
+/* Imagens dos Posts com filtro dramático */
+article img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    filter: grayscale(15%) contrast(115%);
+    border-bottom: 4px solid var(--border-color);
+    transition: filter 0.3s;
+}
+
+article:hover img {
+    filter: grayscale(0%) contrast(110%);
+}
+
+/* Espaçamento Interno do Conteúdo */
+article div {
+    padding: 30px;
+}
+
+/* Títulos dos Artigos */
+article h2 {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+/* Descrição do Artigo (Texto de Leitura) */
+article p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte ergonômica para leitura */
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    margin-bottom: 20px;
+}
+
+/* Links das Fontes */
+.artigo-fonte {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-top: 10px;
+}
+
+.artigo-fonte a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.artigo-fonte a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+/* Botões de Reações (❤️ e 👍) - Estilo Botões de Painel de Instrumentos */
+article button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    background: #111113;
+    border: 2px solid var(--border-color);
+    padding: 10px 22px;
+    border-radius: 0px; /* Sem cantos arredondados */
+    cursor: pointer;
+    margin-right: 12px;
+    margin-top: 10px;
+    color: #ffffff;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+article button:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000000;
+}
+
+article button span {
+    font-family: 'Impact', sans-serif;
+    font-weight: 900;
+    margin-left: 5px;
+}
+
+/* Botão Flutuante Conta-Giros (Alternar Tema 🌓) */
+.btn-tema-escuro {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Mantido redondo lembrando um relógio de turbo/manômetro */
+    background-color: var(--primary-color);
+    border: 3px solid #000000;
+    color: #000000;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(255, 94, 0, 0.5);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s, background-color 0.2s;
+}
+
+.btn-tema-escuro:hover {
+    background-color: #ffffff;
+    transform: scale(1.1) rotate(180deg);
+}
+
+/* Responsividade Avançada */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.8rem;
+    }
+    article h2 {
+        font-size: 1.8rem;
+    }
+    article img {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+    header p {
+        font-size: 1rem;
+    }
+    article div {
+        padding: 20px;
+    }
+    article img {
+        height: 200px;
+    }
+}
