@@ -1,0 +1,28 @@
+<article class="jogo-container">
+            <div class="jogo-header">
+                <h2>🕹️ Mini-Drag Race: Teste os Stages!</h2>
+                <p>Acelere o carro e clique em "TROCAR MARCHA" exatamente na zona ideal vermelha!</p>
+            </div>
+            
+            <div class="pista">
+                <div id="carro-jogador">🏎️💨</div>
+                <div class="linha-chegada">🏁</div>
+            </div>
+
+            <div class="painel-instrumentos">
+                <div class="tacometro">
+                    <div id="ponteiro"></div>
+                    <div class="zona-ideal"></div>
+                </div>
+                <div class="status-jogo">
+                    <p>Velocidade: <span id="vel-display">0</span> km/h</p>
+                    <p>Marcha: <span id="marcha-display">1</span>ª</p>
+                </div>
+            </div>
+
+            <div class="controles-jogo">
+                <button id="btn-largada">LARGAR! 🟢</button>
+                <button id="btn-marcha" disabled>TROCAR MARCHA ⚙️</button>
+            </div>
+            <p id="feedback-corrida"></p>
+        </article>
