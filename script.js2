@@ -1,0 +1,101 @@
+// ==========================================================================
+// LÓGICA DO JOGO: MINI-DRAG RACE
+// ==========================================================================
+
+let velocidade = 0;
+let marcha = 1;
+let posicaoCarro = 0;
+let rpm = 0;
+let loopJogo;
+let ponteiroSubindo = true;
+let corridaAtiva = false;
+
+const btnLargada = document.getElementById('btn-largada');
+const btnMarcha = document.getElementById('btn-marcha');
+const carro = document.getElementById('carro-jogador');
+const ponteiro = document.getElementById('ponteiro');
+const velDisplay = document.getElementById('vel-display');
+const marchaDisplay = document.getElementById('marcha-display');
+const feedback = document.getElementById('feedback-corrida');
+
+// Iniciar Corrida
+btnLargada.addEventListener('click', () => {
+    velocidade = 0;
+    marcha = 1;
+    posicaoCarro = 0;
+    rpm = 0;
+    corridaAtiva = true;
+    
+    carro.style.left = '0px';
+    velDisplay.textContent = velocidade;
+    marchaDisplay.textContent = marcha;
+    feedback.textContent = "Aceleraaaa! 🔥";
+    feedback.style.color = '#fff';
+
+    btnLargada.disabled = true;
+    btnMarcha.disabled = false;
+
+    // Loop do motor e movimento
+    loopJogo = setInterval(atualizarJogo, 30);
+});
+
+// Trocar Marcha
+btnMarcha.addEventListener('click', () => {
+    if (!corridaAtiva) return;
+
+    // A zona ideal fica entre 75% e 90% da barra do tacômetro
+    if (rpm >= 70 && rpm <= 88) {
+        marcha++;
+        velocidade += 45; // Bônus de troca perfeita
+        feedback.textContent = "⚡ TROCA PERFEITA! +POTÊNCIA";
+        feedback.style.color = "#00ff00";
+    } else {
+        velocidade = Math.max(10, velocidade - 20); // Penalidade se errar o tempo
+        feedback.textContent = "💥 CORTOU GIRO / MARCHA ERRADA!";
+        feedback.style.color = "#ff0000";
+    }
+
+    if (marcha > 5) marcha = 5;
+    marchaDisplay.textContent = marcha;
+    rpm = 0; // Reseta o giro para a próxima marcha
+});
+
+function atualizarJogo() {
+    // Controla o movimento do ponteiro de RPM
+    if (ponteiroSubindo) {
+        rpm += 4 + marcha; // Sobe mais rápido em marchas altas
+        if (rpm >= 100) rpm = 100;
+    }
+
+    ponteiro.style.left = rpm + '%';
+
+    // Se chegar no limite do giro (100%), perde velocidade (limitador atuando)
+    if (rpm >= 100) {
+        velocidade = Math.max(0, velocidade - 2);
+        feedback.textContent = "⚠️ REDLINE! TROQUE A MARCHA!";
+        feedback.style.color = var(--primary-color);
+    } else {
+        velocidade += 0.5 * marcha; // Aceleração constante
+    }
+
+    velDisplay.textContent = Math.floor(velocidade);
+
+    // Mover o carro na pista
+    posicaoCarro += velocidade * 0.05;
+    carro.style.left = posicaoCarro + 'px';
+
+    // Verificar Linha de Chegada (limite da largura do container da pista)
+    const larguraPista = document.querySelector('.pista').clientWidth - 60;
+    if (posicaoCarro >= larguraPista) {
+        finalizarCorrida();
+    }
+}
+
+function finalizarCorrida() {
+    clearInterval(loopJogo);
+    corridaAtiva = false;
+    btnLargada.disabled = false;
+    btnMarcha.disabled = true;
+    feedback.textContent = `🏁 CHEGOU! Velocidade Final: ${Math.floor(velocidade)} km/h!`;
+    feedback.style.color = "#ff5e00";
+}
